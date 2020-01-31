@@ -1,0 +1,26 @@
+p {
+  font-size: 14px;
+  color: var(--ion-color-primary);
+}
+
+h4 {
+  font-size: 24px;
+  font-weight: 200;
+  color: var(--ion-color-primary);
+}
+
+.rates {
+  position: absolute;
+  right: 10px;
+  font-weight: 700;
+}
+
+.list {
+  margin-top: 20px;
+}
+
+.currency {
+  border: 1px solid var(--ion-color-primary);
+  border-radius: 12px;
+  margin-bottom: 5px;
+}

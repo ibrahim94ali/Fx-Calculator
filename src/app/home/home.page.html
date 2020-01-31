@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title style="text-align: center;">
+      FX Calculator
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="secondary" class="ion-padding">
+    <ion-spinner
+      *ngIf="loading$ | async"
+      style="position: absolute; left: 50%; top: 50%;"
+    ></ion-spinner>
+
+    <div *ngIf="!(loading$ | async) && (loadingFailed$ | async)">
+      <h4 style="text-align: center;">
+        Loading has failed, please try again...
+      </h4>
+    </div>
+
+    <div *ngIf="!(loading$ | async) && !(loadingFailed$ | async)">
+      <ion-grid class="base">
+        <ion-row>
+          <ion-col>
+            <p>Selected Base</p>
+            <h4>{{base$ | async}}</h4>
+          </ion-col>
+          <ion-col>
+            <ion-item>
+              <ion-label position="stacked" color="primary">Amount</ion-label>
+              <ion-input
+                clearInput
+                type="number"
+                [(ngModel)]="amount"
+              ></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-list class="list">
+        <ion-item
+          *ngFor="let currency of currencies$ | async"
+          class="currency"
+          lines="none"
+          (click)="changeBase(currency.name)"
+        >
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <h4>
+                  {{currency.name}}
+                </h4>
+              </ion-col>
+              <ion-col>
+                <h4 class="rates">
+                  {{currency.rate * amount | currency: currency.name}}
+                </h4>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+      </ion-list>
+    </div>
+</ion-content>

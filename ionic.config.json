@@ -1,0 +1,7 @@
+{
+  "name": "fx_calculator",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
