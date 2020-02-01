@@ -58,4 +58,8 @@ export class HomePage {
   changeBase(base: string) {
     this.store.dispatch(new CurrencyActions.Load(base));
   }
+
+  tryAgain() {
+    this.store.dispatch(new CurrencyActions.Load());
+  }
 }

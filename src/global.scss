@@ -24,3 +24,12 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+* {
+    font-family: 'Roboto Slab', serif;
+}
+
+.buttons {
+    margin-top: 20px;
+    color: var(--ion-color-secondary);
+}

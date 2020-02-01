@@ -10,12 +10,18 @@
     <ion-spinner
       *ngIf="loading$ | async"
       style="position: absolute; left: 50%; top: 50%;"
+      name="circles"
+      color="primary"
     ></ion-spinner>
 
     <div *ngIf="!(loading$ | async) && (loadingFailed$ | async)">
       <h4 style="text-align: center;">
-        Loading has failed, please try again...
+        Loading has failed,<br/>
+        Please try again...
       </h4>
+      <section style="text-align: center;">
+      <ion-button (click)="tryAgain()" class="buttons">Try Again</ion-button>
+    </section>
     </div>
 
     <div *ngIf="!(loading$ | async) && !(loadingFailed$ | async)">
@@ -38,10 +44,10 @@
         </ion-row>
       </ion-grid>
 
-      <ion-list class="list">
+      <ion-list class="list ion-margin-top">
         <ion-item
           *ngFor="let currency of currencies$ | async"
-          class="currency"
+          class="currency ion-margin-bottom"
           lines="none"
           (click)="changeBase(currency.name)"
         >
