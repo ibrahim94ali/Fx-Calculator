@@ -30,7 +30,7 @@ export class CurrencyEffects {
         .get(`https://api.exchangeratesapi.io/latest?base=${base}`)
         .pipe(
           map(
-            (res: any) =>
+            (res: ApiState) =>
               new CurrencyActions.LoadSuccess(
                 this.mapCurrenciesFromApi(
                   res.rates,
@@ -57,12 +57,14 @@ export class CurrencyEffects {
     supportedLanguage: string[],
     base: string
   ): Currency[] {
-    const apiCurrencies: Currency[] = [];
+    let apiCurrencies: Currency[] = [];
     for (const currency in currencies) {
       if (supportedLanguage.includes(currency) && currency !== base) {
         apiCurrencies.push({ name: currency, rate: currencies[currency] });
       }
     }
+
+    apiCurrencies = apiCurrencies.sort((a, b) => a.name > b.name ? 1 : -1);
     return apiCurrencies;
   }
 }
