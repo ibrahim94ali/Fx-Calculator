@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.ibrahimaliu.fxexchange" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>FX Exchange</name>
-    <description>Currency exchange with real time rates</description>
+<widget id="com.ibrahimaliu.fxcalculator" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>FX Calculator</name>
+    <description>Currency exchange calculator with real time rates</description>
     <author email="94ibrahimali@gmail.com" href="https://www.linkedin.com/in/ibrahim-aliu-01411b153/">Ibrahim Aliu</author>
     <content src="index.html" />
     <access origin="*" />
