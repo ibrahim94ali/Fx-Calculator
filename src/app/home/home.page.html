@@ -29,7 +29,7 @@
         <ion-row>
           <ion-col>
             <p>Selected Base</p>
-            <h4>{{base$ | async}}</h4>
+            <h4 id="base">{{base$ | async}}</h4>
           </ion-col>
           <ion-col>
             <ion-item>
@@ -37,14 +37,15 @@
               <ion-input
                 clearInput
                 type="number"
-                [(ngModel)]="amount"
+                [ngModel]="amount"
+                (ngModelChange)="onAmountChange($event)"
               ></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
       </ion-grid>
 
-      <ion-list class="list ion-margin-top">
+      <ion-list class="list ion-margin-top" id="list">
         <ion-item
           *ngFor="let currency of currencies$ | async"
           class="currency ion-margin-bottom"
@@ -59,7 +60,7 @@
                 </h4>
               </ion-col>
               <ion-col>
-                <h4 class="rates">
+                <h4 class="rates" id="{{currency.name}}">
                   {{currency.rate * amount | currency: currency.name}}
                 </h4>
               </ion-col>

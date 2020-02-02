@@ -14,6 +14,8 @@ export class HomePage {
   currencies: Currency[] = [];
   amount = 1;
 
+  base: string;
+
   loading$: Observable<boolean> = this.store
     .select(state => state.currency.loading)
     .pipe(
@@ -37,6 +39,7 @@ export class HomePage {
     .pipe(
       filter(currencies => currencies !== undefined),
       map(currencies => {
+        this.currencyChangedAnimation();
         this.currencies = currencies;
         return currencies;
       })
@@ -47,6 +50,10 @@ export class HomePage {
     .pipe(
       filter(selected => selected !== undefined),
       map(selected => {
+        if (this.base) {
+        this.baseChangedAnimation();
+        }
+        this.base = selected;
         return selected;
       })
     );
@@ -61,5 +68,26 @@ export class HomePage {
 
   tryAgain() {
     this.store.dispatch(new CurrencyActions.Load());
+  }
+
+  baseChangedAnimation() {
+    const element =  document.getElementById('base');
+    element.classList.add('animated', 'flash');
+  }
+
+  currencyChangedAnimation() {
+    const element =  document.getElementById('list');
+    element.classList.add('animated', 'fadeIn');
+  }
+
+  onAmountChange(ev: number) {
+    this.amount = ev;
+    this.currencies.forEach(c => {
+      const element =  document.getElementById(c.name);
+      element.classList.add('animated', 'flipInX', 'faster');
+      setTimeout(() => {
+        element.classList.remove('animated', 'flipInX');
+      }, 500);
+    });
   }
 }
